@@ -1,38 +1,139 @@
-<!-- dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Dashboard - Barangay System</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barangay Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="images/Cuyapo.png" type="image/png" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-100 min-h-screen flex">
 
-  <!-- Header -->
-  <header class="bg-blue-700 text-white p-4 flex justify-between items-center">
-    <h1 class="text-xl font-semibold">Barangay Dashboard</h1>
-    <a href="index.html" class="text-sm underline">Logout</a>
-  </header>
+  <!-- Sidebar -->
+<aside class="w-64 bg-blue-800 text-white min-h-screen shadow-lg hidden md:block">
+  <div class="p-6 flex items-center gap-2">
+    <img src="images/Cuyapo.png" class="h-10 w-10 rounded-full" alt="Logo">
+    <h1 class="text-lg font-bold">Barangay System</h1>
+  </div>
+  <nav class="px-6 mt-6 space-y-2">
+    <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-blue-700 font-medium">
+      <i data-feather="home"></i> Dashboard
+    </a>
+    <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-blue-700 font-medium">
+      <i data-feather="users"></i> Residents
+    </a>
+    <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-blue-700 font-medium">
+      <i data-feather="file-text"></i> Blotters
+    </a>
+    <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-blue-700 font-medium">
+      <i data-feather="file"></i> Certificates
+    </a>
+    <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-blue-700 font-medium">
+      <i data-feather="bell"></i> Announcements
+    </a>
+    <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-blue-700 font-medium">
+      <i data-feather="users"></i> Officials
+    </a>
+  </nav>
+</aside>
 
-  <!-- Content -->
-  <main class="p-6">
-    <h2 class="text-2xl font-bold mb-4">Welcome, Admin</h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-white p-4 rounded shadow">
-        <h3 class="font-bold">Residents</h3>
-        <p>Total: 512</p>
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col">
+    <!-- Header -->
+    <header class="bg-white px-6 py-4 shadow flex justify-between items-center">
+      <h2 class="text-xl font-semibold text-gray-800">Dashboard</h2>
+      <a href="index.html" class="text-sm bg-blue-800 text-white px-3 py-1 rounded hover:bg-blue-700 transition">Logout</a>
+    </header>
+
+    <!-- Dashboard Cards -->
+    <main class="p-6">
+      <h3 class="text-2xl font-bold mb-6 text-gray-700">Welcome, Admin 👋</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-lg font-medium text-gray-600">Residents</span>
+            <span class="text-xl">👥</span>
+          </div>
+          <p class="text-3xl font-bold text-blue-700">512</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-lg font-medium text-gray-600">Blotters</span>
+            <span class="text-xl">🚨</span>
+          </div>
+          <p class="text-3xl font-bold text-red-600">4 Pending</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-lg font-medium text-gray-600">Certificates</span>
+            <span class="text-xl">📄</span>
+          </div>
+          <p class="text-3xl font-bold text-green-600">38 this month</p>
+        </div>
       </div>
-      <div class="bg-white p-4 rounded shadow">
-        <h3 class="font-bold">Blotters</h3>
-        <p>Pending: 4</p>
-      </div>
-      <div class="bg-white p-4 rounded shadow">
-        <h3 class="font-bold">Certificates Issued</h3>
-        <p>This month: 38</p>
-      </div>
-    </div>
-  </main>
+      <section class="mt-8 bg-white p-6 rounded shadow">
+  <h2 class="text-lg font-bold mb-4">Barangay Statistics</h2>
+  <canvas id="barangayChart" height="100"></canvas>
+</section>
+    </main>
+  </div>
+
+  <script>
+  const ctx = document.getElementById('barangayChart').getContext('2d');
+  const barangayChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Residents', 'Blotters', 'Certificates'],
+      datasets: [{
+        label: 'Statistics',
+        data: [512, 4, 38], // Replace with dynamic values later if needed
+        backgroundColor: [
+          'rgba(59, 130, 246, 0.6)',  // blue-500
+          'rgba(239, 68, 68, 0.6)',   // red-500
+          'rgba(16, 185, 129, 0.6)'   // emerald-500
+        ],
+        borderColor: [
+          'rgba(59, 130, 246, 1)',
+          'rgba(239, 68, 68, 1)',
+          'rgba(16, 185, 129, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+   options: {
+  responsive: true,
+  animation: {
+    duration: 1200,
+    easing: 'easeOutBounce'
+  },
+  scales: {
+    y: {
+      beginAtZero: true,
+      ticks: {
+        stepSize: 10
+      }
+    }
+  }
+}
+
+  });
+</script>
+
+<script>
+  feather.replace()
+</script>
+
 
 </body>
 </html>
