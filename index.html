@@ -7,6 +7,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
   <link rel="icon" type="image/png" href="images/Cuyapo.png">
   <style>
     body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
@@ -53,6 +55,38 @@
   });
 </script>
 
+<style>
+  @keyframes fadeInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fadeInLeft {
+    animation: fadeInLeft 1s ease forwards;
+  }
+
+  .animate-fadeInRight {
+    animation: fadeInRight 1s ease forwards;
+  }
+</style>
+
 
 
 </head>
@@ -68,15 +102,25 @@
     </div>
 
     <!-- Navigation Links -->
-    <nav class="hidden md:flex space-x-6 text-sm font-medium">
-      <a href="#" class="text-gray-700 hover:text-blue-700 transition hover:scale-105 hover:underline">Home</a>
-      <a href="#about" class="text-gray-700 hover:text-blue-700 transition hover:scale-105 hover:underline">About Us</a>
-      <a href="#officials" class="text-gray-700 hover:text-blue-700 transition hover:scale-105 hover:underline">Officials</a>
-      <a href="#announcements" class="text-gray-700 hover:text-blue-700 transition hover:scale-105 hover:underline">Announcements</a>
-      <a href="#services" class="text-gray-700 hover:text-blue-700 transition hover:scale-105 hover:underline">Services</a>
-      <a href="#gallery" class="text-gray-700 hover:text-blue-700 transition hover:scale-105 hover:underline">Gallery</a>
-      <a href="#contact" class="text-gray-700 hover:text-blue-700 transition hover:scale-105 hover:underline">Contact Us</a>
-    </nav>
+<nav id="mobileMenu" class="hidden md:flex flex-col md:flex-row md:space-x-6 text-sm font-medium w-full md:w-auto mt-4 md:mt-0">
+  <a href="#" class="text-gray-700 hover:text-blue-700 hover:underline">Home</a>
+  <a href="#about" class="text-gray-700 hover:text-blue-700 hover:underline">About Us</a>
+  <a href="#officials" class="text-gray-700 hover:text-blue-700 hover:underline">Officials</a>
+  <a href="#announcements" class="text-gray-700 hover:text-blue-700 hover:underline">Announcements</a>
+  <a href="#services" class="text-gray-700 hover:text-blue-700 hover:underline">Services</a>
+  <a href="#gallery" class="text-gray-700 hover:text-blue-700 hover:underline">Gallery</a>
+  <a href="#contact" class="text-gray-700 hover:text-blue-700 hover:underline">Contact Us</a>
+</nav>
+
+    <!-- Hamburger Button (Mobile) -->
+<button id="menuToggle" class="md:hidden text-gray-700 focus:outline-none">
+  <!-- Icon: 3 lines -->
+  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+       xmlns="http://www.w3.org/2000/svg">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+</button>
 
     <!-- ✅ Bell with Notification Dots and Dropdown -->
 <div class="relative">
@@ -150,6 +194,30 @@
       </p>
     </div>
   </section>
+
+  <section id="mission-vision" class="bg-white py-16 px-6 md:px-16 lg:px-32">
+  <div class="max-w-6xl mx-auto text-center mb-12">
+    <h2 class="text-3xl font-bold text-blue-800">Our Mission & Vision</h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Mission -->
+    <div class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md transition duration-300 animate-fadeInLeft">
+      <h3 class="text-xl font-semibold text-blue-700 mb-2 text-left">Mission</h3>
+      <p class="text-gray-700 leading-relaxed text-left">
+        To effectively address the desire and needs of people by educating and empowering them through geniune public service and responsible local governance.
+      </p>
+    </div>
+
+    <!-- Vision -->
+    <div class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md transition duration-300 animate-fadeInRight">
+      <h3 class="text-xl font-semibold text-blue-700 mb-2 text-left">Vision</h3>
+      <p class="text-gray-700 leading-relaxed text-left">
+        Cuyapo is a strategic, premier agri-eco tourism center in Nueva Ecija, with a healthy, empowered and Godly citizenry flourishing in a safe, adaptive and livable community, enjoying a clean and preserved environment with a balanced ecology, while thriving in a progressive, sustainable and competitive economy, that is supported by a well-planned, accessible and resilient infrastructure and served by a proactive, collaborative, well-equipped, and highly-motivated local government.
+      </p>
+    </div>
+  </div>
+</section>
 
   <!-- Barangay Officials Section -->
 <section id="officials" class="py-20 bg-gray-100">
@@ -376,6 +444,8 @@
 </section>
 
 
+
+
   <!-- Contact Section -->
 <section id="contact" class="py-20 bg-white">
   <div class="max-w-5xl mx-auto px-4">
@@ -404,6 +474,7 @@
           <p>Lunes - Biyernes: 8:00 AM – 5:00 PM</p>
         </div>
       </div>
+      
 
       <!-- Contact Form -->
       <form action="#" method="POST" class="space-y-4" data-aos="fade-left" data-aos-delay="300">
@@ -436,5 +507,15 @@
 <script>
   AOS.init();
 </script>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
 </body>
 </html>
