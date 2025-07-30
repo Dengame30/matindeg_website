@@ -1,0 +1,40 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Barangay System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="bg-white p-8 rounded shadow-md w-full max-w-sm">
+    <h2 class="text-2xl font-bold text-center mb-6">Admin Login</h2>
+    <form onsubmit="return login(event)">
+      <div class="mb-4">
+        <label class="block mb-1 text-sm font-medium">Username</label>
+        <input type="text" id="username" class="w-full border p-2 rounded" required>
+      </div>
+      <div class="mb-4">
+        <label class="block mb-1 text-sm font-medium">Password</label>
+        <input type="password" id="password" class="w-full border p-2 rounded" required>
+      </div>
+      <button type="submit" class="w-full bg-blue-700 text-white p-2 rounded">Login</button>
+    </form>
+    <p id="error" class="text-red-500 mt-4 text-sm text-center hidden">Invalid credentials</p>
+  </div>
+
+  <script>
+    function login(event) {
+      event.preventDefault();
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+
+      if (user === "admin" && pass === "admin123") {
+        window.location.href = "dashboard.html";
+      } else {
+        document.getElementById('error').classList.remove('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

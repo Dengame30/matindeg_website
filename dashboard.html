@@ -1,0 +1,38 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Barangay System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Header -->
+  <header class="bg-blue-700 text-white p-4 flex justify-between items-center">
+    <h1 class="text-xl font-semibold">Barangay Dashboard</h1>
+    <a href="index.html" class="text-sm underline">Logout</a>
+  </header>
+
+  <!-- Content -->
+  <main class="p-6">
+    <h2 class="text-2xl font-bold mb-4">Welcome, Admin</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-4 rounded shadow">
+        <h3 class="font-bold">Residents</h3>
+        <p>Total: 512</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow">
+        <h3 class="font-bold">Blotters</h3>
+        <p>Pending: 4</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow">
+        <h3 class="font-bold">Certificates Issued</h3>
+        <p>This month: 38</p>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
