@@ -29,14 +29,20 @@
   }
 </style>
 
-<!-- Add inside your <head> -->
+<!-- ✅ Script -->
 <script>
   function toggleDropdown() {
     const dropdown = document.getElementById('notificationDropdown');
     dropdown.classList.toggle('hidden');
+
+    // ✅ Mark as read (remove red dot)
+    const dot1 = document.getElementById('dotPulse');
+    const dot2 = document.getElementById('dotSolid');
+    if (dot1) dot1.remove();
+    if (dot2) dot2.remove();
   }
 
-  // Optional: Close dropdown if you click outside
+  // Optional: close dropdown when clicking outside
   document.addEventListener('click', function (event) {
     const bell = document.getElementById('bellButton');
     const dropdown = document.getElementById('notificationDropdown');
@@ -71,7 +77,7 @@
       <a href="#contact" class="text-gray-700 hover:text-blue-700 transition hover:scale-105 hover:underline">Contact Us</a>
     </nav>
 
-    <!-- 🔔 Notification Bell in Navbar -->
+    <!-- ✅ Bell with Notification Dots and Dropdown -->
 <div class="relative">
   <button id="bellButton"
           onclick="toggleDropdown()"
@@ -94,19 +100,19 @@
                0v1a3 3 0 11-6 0v-1m6 0H9" />
     </svg>
 
-    <!-- Notification Badge -->
-    <span class="absolute -top-1 -right-1 block h-3 w-3 bg-red-500 rounded-full ring-2 ring-white animate-ping"></span>
-    <span class="absolute -top-1 -right-1 block h-3 w-3 bg-red-500 rounded-full ring-2 ring-white"></span>
+    <!-- 🔴 Notification Dot -->
+    <span id="dotPulse" class="absolute -top-1 -right-1 block h-3 w-3 bg-red-500 rounded-full ring-2 ring-white animate-ping"></span>
+    <span id="dotSolid" class="absolute -top-1 -right-1 block h-3 w-3 bg-red-500 rounded-full ring-2 ring-white"></span>
   </button>
 
-  <!-- Dropdown Menu -->
+  <!-- 🔽 Dropdown -->
   <div id="notificationDropdown"
        class="hidden absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg border z-50">
     <div class="p-4 text-sm text-gray-700 font-medium border-b">Latest Announcements</div>
     <ul class="max-h-60 overflow-y-auto">
       <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm">📢 Barangay assembly on Aug 15, 2025</li>
-      <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm">📌 Health checkup available every Wed</li>
-      <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm">📝 New ID registration form is now online</li>
+      <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm">📌 Health checkup every Wednesday</li>
+      <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm">📝 ID registration now online</li>
       <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-center text-blue-600">
         <a href="#announcements" class="hover:underline">View All</a>
       </li>
